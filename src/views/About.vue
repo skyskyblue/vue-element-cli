@@ -8,7 +8,7 @@
   export default {
     name: 'about',
     created() {
-      console.log(moment(), '11')
+      console.log(moment().format('YYYY-MM-DD HH:mm:ss'), '11')
       console.log(_, '22')
       console.log(currentEnv, 'currentEnv')
     }
