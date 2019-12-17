@@ -10,6 +10,7 @@
     created() {
       console.log(moment(), '11')
       console.log(_, '22')
+      console.log(currentEnv, 'currentEnv')
     }
   }
 </script>

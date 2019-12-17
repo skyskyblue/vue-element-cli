@@ -5,31 +5,25 @@ import store from '@/store'
 import axios from 'axios'
 import _ from 'lodash'
 import moment from 'moment'
-import localForage from 'localforage'
+import localforage from 'localforage'
 
 const currentEnv = _.assign(process.env)
 Vue.config.productionTip = currentEnv.VUE_APP_DEBUG
 const mockInstance = axios.create()
 const apiInstance = axios.create()
 
-const init = () => {
+const init = (env) => {
   mockInstance.defaults.baseURL = currentEnv.VUE_APP_MOCK_SERVER
   apiInstance.defaults.baseURL = currentEnv.VUE_APP_API_SERVER
   _.assign(window, {
     _,
     axios,
-    localForage,
+    localforage,
     moment,
     mockInstance,
-    apiInstance
-  })
-  _.assign(Vue.prototype, {
-    _,
-    axios,
-    localForage,
-    moment
-  })
-  
+    apiInstance,
+    currentEnv: env
+  })  
 }
 
 new Vue({
@@ -38,6 +32,11 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-init()
-
+const configUrl = './static/extraConfig.json'
+axios.get(configUrl).then(async (extraConfigRes) => {
+  if (extraConfigRes && extraConfigRes.data) {
+    return init(_.assign(currentEnv, extraConfigRes.data))
+  }
+  return init(currentEnv)
+ })
 
