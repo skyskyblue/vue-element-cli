@@ -12,7 +12,10 @@
   export default {
     name: 'app',
     created() {
-      console.log(window, 'axios')
+      
+    },
+    mounted() {
+   
     }
   }
 </script>

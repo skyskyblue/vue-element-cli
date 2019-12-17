@@ -4,6 +4,7 @@ import router from '@/router'
 import store from '@/store'
 import axios from 'axios'
 import _ from 'lodash'
+import moment from 'moment'
 import localForage from 'localforage'
 
 const currentEnv = _.assign(process.env)
@@ -18,8 +19,15 @@ const init = () => {
     _,
     axios,
     localForage,
+    moment,
     mockInstance,
     apiInstance
+  })
+  _.assign(Vue.prototype, {
+    _,
+    axios,
+    localForage,
+    moment
   })
   
 }
