@@ -11,8 +11,19 @@
 <script>
   export default {
     name: 'app',
-    created() {
-      
+    async created() {
+      this.$store.dispatch('Auth/changeAge', 16)
+      console.log(this.age, 'age')
+    },
+    computed: {
+      age() {
+        return this.$store.getters['Auth/name']
+      }
+    },
+    watch: {
+      age($val) {
+        console.log($val, 'store1')
+      }
     },
     mounted() {
    
