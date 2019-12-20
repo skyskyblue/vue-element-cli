@@ -12,9 +12,7 @@ export default (err, res) => {
             app.$message.error(finalRes.message)
         }
         if (finalRes.code === 401) {
-            app.$store.dispatch({
-                type: 'Auth/clearUserInfo'
-            })
+            app.$store.dispatch('Auth/clearUserInfo')
         }
         return finalRes
     }

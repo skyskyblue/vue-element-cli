@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 import App from '@/App'
 import router from '@/router'
 import store from '@/store'
@@ -7,6 +9,7 @@ import _ from 'lodash'
 import moment from 'moment'
 import localforage from 'localforage'
 
+Vue.use(ElementUI)
 const currentEnv = _.assign(process.env)
 Vue.config.productionTip = currentEnv.VUE_APP_DEBUG
 const mockInstance = axios.create()
